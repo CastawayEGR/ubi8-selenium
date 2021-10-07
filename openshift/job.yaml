@@ -1,0 +1,19 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ubi8-selenium
+spec:
+  parallelism: 1    
+  completions: 1    
+  activeDeadlineSeconds: 1800 
+  backoffLimit: 6   
+  template:         
+    metadata:
+      name: ubi8-selenium
+    spec:
+      containers:
+      - name: ubi8-selenium
+        image: quay.io/castawayegr/ubi8-selenium:latest
+        command: ["python3", "main.py"]
+      restartPolicy: Never    
